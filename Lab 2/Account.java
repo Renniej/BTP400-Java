@@ -10,27 +10,25 @@ import java.util.Locale;
 * @since   2020-01-12 
 */
 
-public class Account {
+public class Account implements Cloneable{
 
 	
 	
 	/**Account holder's full name*/
-	String m_Full_Name; 
+	private String m_Full_Name; 
 	
 	/**Account Number*/
-	String m_Acct_Num; 
+	private String m_Acct_Num; 
 	
 	/** Account's Current Balance*/
-	BigDecimal  m_Cur_Balance; 
+	private BigDecimal  m_Cur_Balance; 
 	
 	
 	
 
 	/**Default constructor for the Account class*/
 	public Account() { 
-		setFullName(null);
-		setAccountNumber(null);
-		setAccountBalance(0);
+		this(null,null,'0');
 	}
 	
 	
@@ -116,11 +114,32 @@ public class Account {
 		
 	}
 	
+
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((m_Acct_Num == null) ? 0 : m_Acct_Num.hashCode());
+		result = prime * result + ((m_Cur_Balance == null) ? 0 : m_Cur_Balance.hashCode());
+		result = prime * result + ((m_Full_Name == null) ? 0 : m_Full_Name.hashCode());
+		return result;
+	}
+
+	
 	//equals
-	public boolean equals(Account acc) {
+	public boolean equals(Object anObj) {
 		
-		return this.getFullName().equals(acc.getFullName()) && this.getAccountNumber().equals(acc.getAccountNumber()) && (this.getAccountBalance() == acc.getAccountBalance());
-			
+		if (anObj instanceof Account) {
+			Account acc = (Account)anObj;
+			return this.getFullName().equals(acc.getFullName()) && this.getAccountNumber().equals(acc.getAccountNumber()) && (this.getAccountBalance() == acc.getAccountBalance());
+		}
+		else {
+			return false;
+		}
+	}
+
+	
+	public Object clone() throws CloneNotSupportedException{
+		return super.clone();
 	}
 	
 	

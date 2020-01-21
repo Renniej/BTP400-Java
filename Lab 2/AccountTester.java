@@ -15,8 +15,16 @@ public class AccountTester {
 		Account test = new Account();
 		Account test2 = new Account("Tai-Juan", "00001", 42);
 		Account test3 = new Account(null, null, -1);
+		Account test4 = null;
 		
-	
+		
+		try {
+			test4 = (Account) test3.clone();
+		} catch (CloneNotSupportedException e) {
+			System.out.println("Clone creation failure ):\n");
+		}
+
+		System.out.println("---Testing Getters/Setters---");
 		
 		System.out.println(test); 
 		System.out.println(test2);
@@ -27,6 +35,13 @@ public class AccountTester {
 		test3.setAccountNumber("00002");
 		
 		System.out.println(test3);
+		
+		System.out.println("---Testing equals()---");
+		
+		
+		
+		
+		
 	}
 	
 }
