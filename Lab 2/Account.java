@@ -125,7 +125,7 @@ public class Account implements Cloneable{
 	}
 
 	
-	//equals
+	/**2 account objects are considered equals when both have the same Name, Account ID and Balance variable */
 	public boolean equals(Object anObj) {
 		
 		if (anObj instanceof Account) {

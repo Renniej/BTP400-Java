@@ -12,14 +12,15 @@ public class AccountTester {
 	public static void main(String[] args) {
 	
 		
-		Account test = new Account();
+		Account test =  new Account();
 		Account test2 = new Account("Tai-Juan", "00001", 42);
 		Account test3 = new Account(null, null, -1);
 		Account test4 = null;
+		Account test5 = null;
 		
 		
 		try {
-			test4 = (Account) test3.clone();
+			test4 = (Account) test2.clone();
 		} catch (CloneNotSupportedException e) {
 			System.out.println("Clone creation failure ):\n");
 		}
@@ -38,9 +39,9 @@ public class AccountTester {
 		
 		System.out.println("---Testing equals()---");
 		
-		
-		
-		
+		System.out.println("Test4 equals Test2 = true : " +  (test4.equals(test2) ? "PASSED" : "FAILED"));
+		System.out.println("Test equals Test2 = false : "  + (test.equals(test2) ? "FAILED" : "PASSED") );
+		System.out.println("Test equals test5(null reference) = false : "  + (test.equals(test5) ? "FAILED" : "PASSED") );
 		
 	}
 	
