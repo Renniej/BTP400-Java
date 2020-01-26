@@ -103,6 +103,8 @@ public class Account implements Cloneable{
 		return this.m_Cur_Balance.doubleValue();
 	}
 	
+
+	
 	//toString()
 	public String toString() {
 		
@@ -130,7 +132,7 @@ public class Account implements Cloneable{
 		
 		if (anObj instanceof Account) {
 			Account acc = (Account)anObj;
-			return this.getFullName().equals(acc.getFullName()) && this.getAccountNumber().equals(acc.getAccountNumber()) && (this.getAccountBalance() == acc.getAccountBalance());
+			return this.m_Full_Name.equals(acc.m_Full_Name) && this.m_Acct_Num.equals(acc.m_Acct_Num) && this.m_Cur_Balance.equals(acc.m_Cur_Balance);
 		}
 		else {
 			return false;
