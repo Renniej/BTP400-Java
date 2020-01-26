@@ -10,7 +10,7 @@ import java.util.Locale;
 * @since   2020-01-12 
 */
 
-public class Account implements Cloneable{
+public class Account{
 
 	
 	
@@ -139,13 +139,6 @@ public class Account implements Cloneable{
 		}
 	}
 
-	
-	public Object clone() throws CloneNotSupportedException{
-		return super.clone();
-	}
-	
-	
-	
-	
+
 	
 }

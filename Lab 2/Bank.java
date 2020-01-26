@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 public class Bank {
@@ -60,7 +62,7 @@ public class Bank {
 		
 		ArrayList<Account> matchedAccounts = new ArrayList<Account>();
 		Account[] accs;
-		System.out.println(m_Accounts.size());
+		
 		
 		for(Account acc : m_Accounts) {
 		
@@ -125,11 +127,18 @@ public class Bank {
 	
 	
 	public boolean equals(Object obj) {
+		
+		
+	
 		if (this == obj)
 			return true;
 		if (!(obj instanceof Bank))
 			return false;
 		Bank other = (Bank) obj;
+		
+	
+		
+	    
 		return Objects.equals(m_Accounts, other.m_Accounts) && Objects.equals(m_Bank_Name, other.m_Bank_Name);
 	}
 
