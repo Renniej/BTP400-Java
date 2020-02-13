@@ -1,0 +1,81 @@
+
++ :  Peter's comment
+- : My comment after seeing Peter's comment
+
+
+1. The Account Class 
+
+What is the data type of the formal parameter used by your equals()
+
+    a) I use the type object for my equals method 
+
+Why did you use the data type?  
+
+    b) because in order to overload the original equals method I need to copy the exact signature of the original and in that signature it used 
+        the type Object as it's parameter.
+
+Did you use the keyword instanceof? Why or why not?
+
+    c) Yes I used the word instanceof in one of my if statements to check if the object being sent through my equals method was of
+        a specific type. 
+
+Did you use BigDecimal objects? Why or why not?
+
+    d) Yes, I used big decimal objects because they don't lose precision on operations that would other wise cause loss of data on other    
+     number types such as integers, doubles and etc. This is extremely useful for important formats such as currency where precision is key.
+
+Why did you implement the equals() method?
+
+    e) I implemented the equals method because I wanted to base an object equaling another object not based on just/only it's hashcode
+        but also it's fields and other factors.
+
+2. The ArrayTester Class
+
+pseudo code for finding duplicates:
+
+a)  - For each element(i) in the array go through the array
+        - if the element(j) index is in the ignoreIndex array then skip it
+        - Else If that element(i) matches element(j) then add +1 to its duplicate counter
+            - Also add the duplicate's element index to the IgnoreIndex so it is never compared again
+        -After this element has been compared to every element in the array add it to the ignoreIndex ArrayTester
+            - Then display the element and the number of duplicates it came across in the array
+
+
+	 + Do not use "break" inside a loop!
+	 - : I disagree completely.... If I already found my element in the loop why continue to go through the other 100 elements?????
+	 + You should not use "continue" in two for loops! It's not easy to understand your logic!
+	 - 2 for loops in general are confusing but i guess I sort of get where you are coming from.
+
+Could you improve your code or simplify it?
+
+b)  I remember reading that hashMap would be able to handle finding the duplicates for us by user their
+    class methods. However I didn't fully understand how Hashmaps worked and thus I never used it.  However
+    if I had I am sure my code would of been much much shorter.
+
+	+ You could also use ArrayList to improve your code.
+	
+
+3. The Bank Class
+
+Pseudo code for searchByBalance() : 
+
+a) - Create an container to hold all our matched accounts
+   - Compare each accounts balance to the one passed through the method' parameters
+     - If the balances match then push the matched account to the the previously created container
+   - Then convert the conatiner to an array and return it.
+
+How does your methord return an arroy of accounts vs an Arraylist of accounts?
+b)  see last line of pseudo-code
+
+What does your method retun if no matching account has been found?
+
+c) My method returns an empty array if no accounts are matched
+
+Did you use BigDecimal objects in this method? Why or why not?
+
+d) No because the only way to access the accounts balance through bank is to use the getAccountBalance method which returns a double.
+   Thus since we recieve a double through our paremeters it wasa better just to use the getter for account's balance.
+
+ + You should use BigDecimal objects.
+
+   ++ marks: 8.5/10

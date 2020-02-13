@@ -12,16 +12,17 @@ public class Bank {
 	
 	
 	public Bank() {
-		m_Bank_Name = "Seneca@York";
-		m_Accounts = new ArrayList<Account>();
+		this("Seneca@York");
 	}
 	
 	public Bank(String name) {
-		this();
+		
 		
 		if (name != null) {
 			m_Bank_Name = name;
 		}
+
+		m_Accounts = new ArrayList<Account>();
 		
 	}
 	
