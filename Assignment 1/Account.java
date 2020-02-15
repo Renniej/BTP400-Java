@@ -103,30 +103,19 @@ public class Account {
 	@Override 
 	public String toString(){
 		
-		String one, two, three;
-		int width;
+		String fields[] = {"Name", "Number", "Current Balance"};
+	
+	// Setting formatting width to the longest string				
+		int width = fieldSize(fields);
 		
-		one = "Name";
-		two = "Number";
-		three = "Current Balace";
-		
-	// Setting formatting width to the longest string		
-		width = three.length();
-		
-	// Formatting the field width	
-		one = String.format("%-" + width +"s", one);
-		two = String.format("%-" + width +"s", two);
-		
-		StringBuffer ret = new StringBuffer(one);
-		
-		ret.append(": ").append(getLastName());
+		StringBuffer ret = new StringBuffer(String.format("%-" + width +"s",fields[0])).append(": ").append(getLastName());
 		
 		if(m_name != "") 
 			ret.append(", ").append(getFirstName());
 		ret.append('\n')
 		
-		   .append(two).append(": ").append(getAccountNumber()).append('\n')
-		   .append(three).append(": $").append(String.format("%.2f",m_balance)).append('\n');
+		   .append(String.format("%-" + width +"s",fields[1])).append(": ").append(getAccountNumber()).append('\n')
+		   .append(String.format("%-" + width +"s",fields[2])).append(": $").append(String.format("%.2f",m_balance)).append('\n');
 		
 		return  ret.toString(); 
 	}
@@ -165,16 +154,16 @@ public class Account {
 	 * @return true if successfully withdrawn
 	 * @throws AccountExceptions
 	 */
-	boolean withdraw(double amount) throws AccountExceptions {
+	public boolean withdraw(double amount) throws AccountExceptions {
 		
 		boolean withdrawn = false;
 		
 		if(amount > 0) {
 			
-			BigDecimal am = new BigDecimal(amount);
+			BigDecimal take = new BigDecimal(amount);
 			
-			if(am.compareTo(m_balance) < 0) {
-				m_balance = m_balance.subtract(am);
+			if(take.compareTo(m_balance) < 0) {
+				m_balance = m_balance.subtract(take);
 				withdrawn = true;
 			}
 			else
@@ -192,7 +181,7 @@ public class Account {
 	 * @param amount
 	 * @throws AccountExceptions
 	 */
-	void deposit(double amount) throws AccountExceptions {
+	public void deposit(double amount) throws AccountExceptions {
 		
 		if(amount > 0) {
 			BigDecimal add = new BigDecimal(amount);
@@ -201,6 +190,23 @@ public class Account {
 		}
 		else
 			throw new MustBePositive("Cannot deposit a negative amount");
+	}
+	
+	
+	/**
+	 * Returns the length of the longest string in the array
+	 * @param fields - an array of fields to format
+	 * @return
+	 */
+	public int fieldSize(String[] fields) {
+		
+		int width = fields[1].length();
+
+		for(int i = 1; i < fields.length; i++)
+			if(fields[i].length() > width)
+				width = fields[i].length();
+		
+		return width;
 	}
 }
 
