@@ -1,24 +1,29 @@
-/**
- * A1
- * 
- * @author troberts10
- * @date Feb-2020
- * @version 1.0
- * 
- */
+
+package com.seneca.accounts;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import com.seneca.exceptions.*;
+
+/**
+ * 
+ * @author troberts10
+ * @date 17-Feb-2020
+ * @version 2.0
+ *
+ * Account Class
+ * 
+ */
 public class Account {
 	
 	private String m_name, m_accountNumber;
 	private BigDecimal m_balance;
 	
 	/**
-	 * Default Account Constructor
+	 * Zero param constructor
 	 */
-	Account(){this("", "", 0.00);}
+	public Account(){this("", "", 0.00);}
 	
 	/**
 	 * Three param Account Constructor
@@ -26,7 +31,7 @@ public class Account {
 	 * @param accountNumber - The account number
 	 * @param balance - The current balance
 	 */
-	Account(String name, String accountNumber, double balance){
+	public Account(String name, String accountNumber, double balance){
 		
 		if(name == null)
 			name = "";	
@@ -44,20 +49,20 @@ public class Account {
 	/**
 	 * @return - returns the full name of the account holder
 	 */
-	String getFullName(){
+	public String getFullName(){
 		return m_name;
 	}
 	
 	/**
 	 * @return - - returns the first name of the account holder
 	 */
-	String getFirstName(){
+	public String getFirstName(){
 		
 		String first;
 		
 		if(m_name != "") {
 			
-			String[] token = m_name.split(" ");
+			String[] token = m_name.split("\\s+");
 			
 			first = token[0];
 		}
@@ -69,15 +74,15 @@ public class Account {
 	/**
 	 * @return - returns the last name of the account holder
 	 */
-	String getLastName(){
+	public String getLastName(){
 		
 		String last;
 		
 		if(m_name != "") {
 			
-			String[] token = m_name.split(" ");
+			String[] token = m_name.split("\\s+");
 				
-			last = token[1];
+			last = token[token.length -1 ];
 		}
 		else
 			last = "";
@@ -88,14 +93,14 @@ public class Account {
 	/**
 	 * @return - returns the current account number 
 	 */
-	String getAccountNumber(){
+	public String getAccountNumber(){
 		return m_accountNumber;
 	}
 	
 	/**
 	 * @return - returns the current balance
 	 */
-	 double getBalance(){
+	 public double getBalance(){
 		return m_balance.doubleValue();
 	}
 
@@ -150,9 +155,9 @@ public class Account {
 	 * Attempts to take money away from current balance.
 	 * Amount must be positive
 	 * Amount must be less than current balance
-	 * @param amount
-	 * @return true if successfully withdrawn
-	 * @throws AccountExceptions
+	 * @param amount to withdraw
+	 * @return true if successfully withdrawn, false otherwise
+	 * @throws AccountExceptions: InsufficientFunds and MustBePositive
 	 */
 	public boolean withdraw(double amount) throws AccountExceptions {
 		
@@ -177,9 +182,8 @@ public class Account {
 	
 	/**
 	 * Attempts to add the parameter to the current balance.
-	 * Amount must be greater than 0
-	 * @param amount
-	 * @throws AccountExceptions
+	 * @param amount to be deposited must be greater than 0;
+	 * @throws AccountExceptions: MustBePositive
 	 */
 	public void deposit(double amount) throws AccountExceptions {
 		
@@ -196,50 +200,16 @@ public class Account {
 	/**
 	 * Returns the length of the longest string in the array
 	 * @param fields - an array of fields to format
-	 * @return
+	 * @return - an int representing the .legth() of the largest string
 	 */
 	public int fieldSize(String[] fields) {
 		
-		int width = fields[1].length();
+		int width = fields[0].length();
 
 		for(int i = 1; i < fields.length; i++)
 			if(fields[i].length() > width)
 				width = fields[i].length();
 		
 		return width;
-	}
-}
-
-
-/**
- * Account exceptions Superclass
- * @author TIM
- */
-@SuppressWarnings("serial")
-class AccountExceptions extends Exception{
-	AccountExceptions(String s){
-		super(s);
-	}
-}
-
-/**
- *Insufficient funds exception 
- * @author TIM
- */
-@SuppressWarnings("serial")
-class InsufficientFunds extends AccountExceptions{
-	InsufficientFunds(String s){
-		super(s);
-	}
-}
-
-/**
- *Must be a positive number exception 
- * @author TIM
- */
-@SuppressWarnings("serial")
-class MustBePositive extends AccountExceptions{
-	MustBePositive(String s){
-		super(s);
 	}
 }
